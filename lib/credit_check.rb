@@ -44,4 +44,5 @@ class CreditCheck
         return print "The number #{card_number} is valid!" if card_number.is_valid? == true
         
         print "The number #{card_number} is invalid!"
+    end
 end
