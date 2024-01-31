@@ -1,16 +1,8 @@
-card_number = "5541808923795240"
-
+# card_number = "5541808923795240"
 # Your Luhn Algorithm Here
 class CreditCheck 
-    attr_reader :card_number,
-                :limit,
-                :doubled_num,
-                :results_num,
-                :arrnum3,
-                :is_valid?
-
-    attr_writer :card_number,
-                :limit
+    attr_reader :card_number
+    attr_writer :card_number
 
     def initialize(card_number, limit)
         @card_number = card_number
@@ -30,15 +22,26 @@ class CreditCheck
         @doubled_num = arrnum2.map{|element| element * 2}
 
         #define sum method to convert to string -> char -> count characters as integers -> sum them together
-    def sum_digits(array)
-        array.to_s.chars.map(&:to_i).sum 
-    end
-    def results_num()
+        def sum_digits(array)
+            array.to_s.chars.map(&:to_i).sum 
+        end
+        
         @results_num = sum_digits(@doubled_num) + sum_digits(@arrnum3)
+
+
+        if results_num % 10 == 0
+            true
+        else
+            false
+        end
     end
-    if results_num % 10 == 0
-        print "The number #{card_number} is valid!"
-    else
+
+    def last_four
+        @cardnumber.last(4)
+    end
+
+    def valid
+        return print "The number #{card_number} is valid!" if card_number.is_valid? == true
+        
         print "The number #{card_number} is invalid!"
-    end
 end
